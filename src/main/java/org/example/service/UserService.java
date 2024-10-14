@@ -1,6 +1,6 @@
 package org.example.service;
 
-import org.example.model.Users;
+import org.example.model.User;
 import org.example.repository.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,11 +19,11 @@ public class UserService {
         userDao.createUser(name);
     }
 
-    public Users getUser(String name) {
+    public User getUser(String name) {
         return userDao.getUser(name);
     }
 
-    public List<Users> getAllUsers() {
+    public List<User> getAllUsers() {
         return userDao.getAllUsers();
     }
 

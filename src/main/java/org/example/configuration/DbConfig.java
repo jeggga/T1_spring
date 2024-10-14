@@ -3,7 +3,6 @@ package org.example.configuration;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import javax.sql.DataSource;
 
@@ -18,10 +17,5 @@ public class DbConfig {
         dataSource.setPassword("postgres");
 
         return dataSource;
-    }
-
-    @Bean
-    public NamedParameterJdbcTemplate jdbcTemplate(DataSource dataSource) {
-        return new NamedParameterJdbcTemplate(dataSource);
     }
 }
