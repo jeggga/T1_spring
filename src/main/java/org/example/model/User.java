@@ -1,12 +1,12 @@
 package org.example.model;
 
-public class Users {
+public class User {
     private Long id;
     private String username;
 
-    public Users() {}
+    public User() {}
 
-    public Users(Long id, String username) {
+    public User(Long id, String username) {
         this.id = id;
         this.username = username;
     }
