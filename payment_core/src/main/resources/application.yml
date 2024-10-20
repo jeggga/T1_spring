@@ -1,0 +1,7 @@
+server:
+  port: 8081
+spring:
+  flyway:
+    user: postgres
+    password: postgres
+    url: jdbc:postgresql://localhost:5432/postgres
