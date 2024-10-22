@@ -1,34 +1,24 @@
 package org.example.service;
 
-import org.example.model.Product;
-import org.example.repository.ProductDao;
+import org.example.model.dto.PaymentDto;
+import org.example.model.dto.ProductDto;
+import org.example.rest.ProductRestClient;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
-
-import java.util.List;
 
 @Service
 public class ProductService {
-    private final RestTemplate restTemplate;
+    private final ProductRestClient restClient;
 
-    public ProductService(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
+    public ProductService(ProductRestClient restClient) {
+        this.restClient = restClient;
     }
 
-    public List<Product> getAllProducts(Long userId) {
-        try {
-            return productDao.getAllProducts(userId);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
+    public ResponseEntity<ProductDto[]> getProductsByUserId(Long userId) {
+        return restClient.getProductsByUserId(userId);
     }
 
-    public Product getProductById(Long productId) {
-        try {
-            return productDao.getProductById(productId);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+    public void paymentByProduct(Long userId, PaymentDto paymentDto) {
+        restClient.makePayment(userId, paymentDto);
     }
 }

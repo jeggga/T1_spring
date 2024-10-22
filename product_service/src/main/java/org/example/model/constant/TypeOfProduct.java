@@ -13,6 +13,7 @@ public enum TypeOfProduct {
                     return typeOfProduct;
                 }
             }
+            throw new IllegalArgumentException("Product with this type does not exist");
         }
         return null;
     }

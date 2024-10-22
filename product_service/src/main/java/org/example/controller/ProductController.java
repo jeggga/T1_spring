@@ -1,12 +1,10 @@
 package org.example.controller;
 
 import org.example.model.Product;
+import org.example.model.dto.PaymentInfoDto;
 import org.example.service.ProductService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Objects;
@@ -46,4 +44,10 @@ public class ProductController {
             return ResponseEntity.internalServerError().build();
         }
     }
+
+    @PostMapping("/pay")
+    public void makePayment(@RequestParam("userId") Long userId, @RequestBody PaymentInfoDto paymentInfoDto) {
+        service.makePayment(userId, paymentInfoDto);
+    }
+
 }

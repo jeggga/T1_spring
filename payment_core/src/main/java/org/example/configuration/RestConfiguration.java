@@ -1,5 +1,6 @@
 package org.example.configuration;
 
+import org.example.exception.handler.RestTemplateResponseErrorHandler;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +13,7 @@ public class RestConfiguration {
     public RestTemplate restTemplate(RestTemplateBuilder restTemplateBuilder) {
         return restTemplateBuilder
                 .rootUri("http://localhost:8082/product")
+                .errorHandler(new RestTemplateResponseErrorHandler())
                 .build();
     }
 }
