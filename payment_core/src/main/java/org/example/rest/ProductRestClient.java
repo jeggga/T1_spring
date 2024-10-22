@@ -5,7 +5,6 @@ import org.example.exception.dto.ErrorResponse;
 import org.example.model.dto.PaymentDto;
 import org.example.model.dto.ProductDto;
 import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -39,16 +38,7 @@ public class ProductRestClient {
 
         HttpEntity<PaymentDto> request = new HttpEntity<>(paymentDto);
         UriComponents uri = UriComponentsBuilder.fromUriString("/pay").queryParam("userId", userId).build();
-        ResponseEntity<String> response = null;
 
-        try {
-            response = restTemplate.postForEntity(uri.toUriString(), request, String.class, map);
-        } catch (Exception exception) {
-            throw new CustomRestException(new ErrorResponse(exception.getMessage(), "product_service"));
-        }
-
-        if (response.getStatusCode() == HttpStatus.NOT_FOUND) {
-            throw new CustomRestException(new ErrorResponse(response.getBody(), "product_service"));
-        }
+        ResponseEntity<String> response = restTemplate.postForEntity(uri.toUriString(), request, String.class, map);
     }
 }
